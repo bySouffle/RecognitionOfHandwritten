@@ -1,0 +1,92 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>手写数字识别</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+    <style type="text/css">
+            body {
+                padding: 0;
+                margin: 0 auto;
+            }
+
+            #footer {
+                height: 40px;
+                line-height: 40px;
+                position: fixed;
+                bottom: 0;
+                width: 100%;
+                text-align: center;
+                background: #333;
+                color: #fff;
+                font-family: Arial;
+                font-size: 12px;
+                letter-spacing: 1px;
+            }
+
+            .content {
+                height: 1800px;
+                width: 100%;
+                text-align: center;
+            }
+        </style>
+</head>
+
+<body>
+		<h1>基于深度学习的手写数字识别</h1> <br>
+
+<div class="centered">
+    <canvas id="canvas" width="280" height="280"></canvas>
+</div>
+
+<div class="centered">
+    <input type="button" class="myButton" value="识别" style="">
+    <input type="button" id="clearButton" value="清除" style="">
+</div>
+
+<div class="centered">
+    <h3 id="result">在上面写下数字开始识别</h3><br>
+</div>
+
+<br>
+<br>
+<br>
+<p align="center" id="today">今日日期: {{today}}</p>
+<p align="center" id="todayNum">今日访问次数: {{visits_today}}</p>
+<h2 align="center" id="allNum">历史访问次数: {{visits_all}}</h2>
+
+
+<script src="{{url_for('static',filename='jquery-3.2.0.min.js')}}"></script>
+	    <script src="{{url_for('static',filename='index.js')}}"></script>
+	    <script type="text/javascript">
+	   		$(".myButton").click(function(){
+	   			$('#result').text('  识 别 中...');
+	   			var $SCRIPT_ROOT = {{request.script_root|tojson|safe}};
+	   			var canvasObj = document.getElementById("canvas");
+	   			var img = canvasObj.toDataURL('image/png');
+	   			$.ajax({
+	   				type: "POST",
+	   				url: $SCRIPT_ROOT + "/predict/",
+	   				data: img,
+	   				success: function(data){
+	   					 $('#result').text('识 别 结 果: ' + data.code);
+                $('#allNum').text('历史访问次数: ' + data.visits_all);
+                $('#todayNum').text('今日访问次数: ' + data.visits_today);
+                $('#today').text('今日日期: ' + data.today);
+	   				}
+	   			});
+	   		});
+	   </script>
+
+       <div id="footer">
+           @bySouffle
+           
+       </div>
+
+
+</body>
+</html>
+
+

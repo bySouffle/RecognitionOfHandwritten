@@ -1,0 +1,5 @@
+/home/bysouffle//MyGraProject/caffe/build/tools/caffe test -model ./net/lenet_P_test.prototxt -weights ./model/lenet-P/_iter_5000.caffemodel -gpu 0 -iterations 100 -log_dir ./testLog
+
+
+
+

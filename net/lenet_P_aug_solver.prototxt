@@ -1,0 +1,52 @@
+net: "./net/lenet_P_train_val_aug.prototxt"
+# train_net: "./net/lenet_P_train_aug.prototxt"
+# test_net: "./net/lenet_P_val_aug.prototxt"
+
+test_iter: 100
+test_interval: 500
+
+
+#---------------------
+#base_lr: 1.0
+#display: 1000
+#max_iter: 120000
+#lr_policy: "fixed"
+#momentum: 0.95
+#weight_decay: 0.0005
+#snapshot: 5000
+#snapshot_prefix: "lenet_P_aug"
+#solver_mode: GPU
+#delta: 1e-6
+#type: "AdaDelta"
+#----------------------
+
+
+#-------------------------
+#base_lr: 0.01
+#lr_policy: "inv"
+#gamma: 0.1
+#power:0.75
+#weight_decay: 0.0005
+#type: "Nesterov"
+#momentum: 0.95
+#-------------------------
+
+base_lr: 0.01
+momentum: 0.9
+weight_decay: 0.0005
+
+lr_policy:"inv"
+gamma: 0.0001
+power: 0.75
+
+type:"Nesterov"
+
+
+display: 100
+max_iter: 120000
+snapshot: 5000
+snapshot_prefix: "./Lenet-P-AD"
+
+# solver mode: CPU or GPU
+solver_mode: GPU
+

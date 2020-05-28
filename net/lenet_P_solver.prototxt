@@ -1,0 +1,15 @@
+train_net: "./net/lenet_P_train.prototxt"
+test_net: "./net/lenet_P_val.prototxt"
+test_iter: 100
+test_interval: 500
+base_lr: 1.0
+display: 1000
+max_iter: 10000
+lr_policy: "fixed"
+momentum: 0.95
+weight_decay: 0.0005
+snapshot: 5000
+snapshot_prefix: "model/lenet-P/"
+solver_mode: GPU
+delta: 1e-6
+type: "AdaDelta"

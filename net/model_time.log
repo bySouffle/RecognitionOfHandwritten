@@ -1,0 +1,1 @@
+/home/bysouffle/MyGraProject/caffe/build/tools/caffe time -model ./lenet_P_solver.prototxt -gpu 0
